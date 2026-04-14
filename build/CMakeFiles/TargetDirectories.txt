@@ -1,0 +1,3 @@
+/home/xuser/projects/cpp/pos-system/build/CMakeFiles/MyApp.dir
+/home/xuser/projects/cpp/pos-system/build/CMakeFiles/edit_cache.dir
+/home/xuser/projects/cpp/pos-system/build/CMakeFiles/rebuild_cache.dir
