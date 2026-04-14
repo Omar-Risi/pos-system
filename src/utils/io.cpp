@@ -1,9 +1,9 @@
-#include "input.h"
+#include "io.h"
 #include <iostream>
 #include <limits>
 
 // returns a string for user input
-std::string Input::getString() {
+std::string IO::getString() {
   std::string result;
   std::cout << "> ";
   std::cin >> result;
@@ -12,7 +12,7 @@ std::string Input::getString() {
 }
 
 // get int input from user returns -1 if error
-int Input::getInt() {
+int IO::getInt() {
   int value;
   std::cout << "> ";
   if (!(std::cin >> value)) {
@@ -25,8 +25,8 @@ int Input::getInt() {
   return value;
 }
 
-// get int input from user returns -1 if error
-float Input::getFloat() {
+// get float input from user returns -1 if error
+float IO::getFloat() {
   float value;
   std::cout << "> ";
   if (!(std::cin >> value)) {
@@ -39,7 +39,8 @@ float Input::getFloat() {
   return value;
 }
 
-double Input::getDouble() {
+// get double input from user returns -1 if error
+double IO::getDouble() {
   double value;
   std::cout << "> ";
   if (!(std::cin >> value)) {
@@ -51,3 +52,6 @@ double Input::getDouble() {
   }
   return value;
 }
+
+// print data for user
+void IO::print(std::string msg) { std::cout << msg << std::endl; }
