@@ -1,6 +1,7 @@
 #include "io.h"
 #include <iostream>
 #include <limits>
+#include <string>
 
 // returns a string for user input
 std::string IO::getString() {
