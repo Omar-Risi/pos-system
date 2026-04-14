@@ -1,10 +1,10 @@
 #include "menu.h"
-#include <iostream>
+#include <functional>
+#include <string>
 
-Menu::Menu() { title = "Main Menu"; }
+Option::Option(std::string _title, std::function<void()> _callback)
+    : title(_title), callback(_callback) {}
 
-void Menu::displayMenu() const {
-  std::cout << "--- " << title << " ---" << std::endl;
-  std::cout << "1. Option One\n";
-  std::cout << "2. Option Two\n";
-}
+void Option::execute() { callback(); }
+
+std::string Option::getTitle() { return title; }
