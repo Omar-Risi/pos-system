@@ -9,11 +9,3 @@ management. reports exports and cashier system.
 2. enter command `cmake -B build` 
 3. enter command `cd build && make`
 4. finally `./pos-system`
-
-## Developed by 
-Omar Al Reesi 24-0178
-Faisal Al Yahmadi 24-0191
-Qusai Al Salmi  
-Al Mamoun 
-Mohammed Al Mohanna 
-
