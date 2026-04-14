@@ -3,7 +3,6 @@
 #include <limits>
 #include <string>
 
-// returns a string for user input
 std::string IO::getString() {
   std::string result;
   std::cout << "> ";
@@ -12,7 +11,6 @@ std::string IO::getString() {
   return result;
 }
 
-// get int input from user returns -1 if error
 int IO::getInt() {
   int value;
   std::cout << "> ";
@@ -26,7 +24,6 @@ int IO::getInt() {
   return value;
 }
 
-// get float input from user returns -1 if error
 float IO::getFloat() {
   float value;
   std::cout << "> ";
@@ -40,7 +37,6 @@ float IO::getFloat() {
   return value;
 }
 
-// get double input from user returns -1 if error
 double IO::getDouble() {
   double value;
   std::cout << "> ";
@@ -54,5 +50,4 @@ double IO::getDouble() {
   return value;
 }
 
-// print data for user
 void IO::print(std::string msg) { std::cout << msg << std::endl; }
