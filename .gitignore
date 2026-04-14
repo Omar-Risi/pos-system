@@ -1,0 +1,29 @@
+# --- CMake Build Folder ---
+# Ignores the folder created by "cmake -B build"
+build/
+
+# --- CMake Generated Files ---
+# Ignores CMake cache and internal files (just in case they end up in the root)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+
+# --- Compiled Object Files ---
+*.o
+*.obj
+
+# --- Compiled Executables ---
+*.exe
+*.out
+*.app
+
+# --- IDE / Editor Folders ---
+# (Uncomment the ones you actually use, or leave them all to be safe)
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
