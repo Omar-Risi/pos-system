@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(pos-system 
     src/main.cpp 
     src/utils/menu.cpp
+    src/utils/input.cpp
 )
 
 # Tell CMake to look inside the 'src' folder for header files
