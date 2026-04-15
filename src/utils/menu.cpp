@@ -27,12 +27,12 @@ void Menu::open() {
     display();
     int input = IO::getInt();
 
-    if (input == -1 || input < 0 || input > options.size())
+    if (input == -1 || input < 1 || input > options.size() + 1)
       continue; // skips on invalid input
 
-    if (input == options.size())
+    if (input == options.size() + 1)
       break;
 
-    options[input].execute();
+    options[input - 1].execute();
   }
 }
