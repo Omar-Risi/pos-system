@@ -21,3 +21,18 @@ void Menu::display() {
 
   IO::print(std::to_string(options.size() + 1) + ". exit");
 }
+
+void Menu::open() {
+  while (true) {
+    display();
+    int input = IO::getInt();
+
+    if (input == -1 || input < 0 || input > options.size())
+      continue; // skips on invalid input
+
+    if (input == options.size())
+      break;
+
+    options[input].execute();
+  }
+}

@@ -40,4 +40,7 @@ public:
 
   // Displays the list of options + one extra back option
   void display();
+
+  // Creates a while loop and opens the menu
+  void open();
 };
