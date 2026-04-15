@@ -22,3 +22,22 @@ public:
    */
   std::string getTitle();
 };
+
+class Menu {
+  std::string title;
+  std::vector<Option> options;
+
+public:
+  /* Constructs the Menu class
+   *  @param _title title of the menu to display
+   */
+  Menu(std::string _title) : title(_title) {}
+
+  /*  Appends a new option to the list of options
+   *  @param option option details
+   */
+  void addOption(Option option);
+
+  // Displays the list of options + one extra back option
+  void display();
+};
