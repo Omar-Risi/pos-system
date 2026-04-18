@@ -13,6 +13,10 @@ std::string Option::getTitle() { return title; }
 void Menu::addOption(Option option) { options.push_back(option); }
 
 void Menu::display() {
+
+  // make menu readable
+  IO::print("");
+
   IO::print(title);
 
   for (int i = 0; i < options.size(); i++) {
