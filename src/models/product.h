@@ -2,13 +2,13 @@
 
 #include <string>
 
-#include "utils/data.h"
+#include "../utils/data.h"
 
 class Product : public Data {
 public:
   std::string sku;
   std::string name;
-  double price;
+  int price;
   int stock;
 
   /* Creates a product model
@@ -17,7 +17,12 @@ public:
    * @param price product unit price
    * @param stock available stock count
    */
-  Product(std::string sku, std::string name, double price, int stock);
+  Product(std::string sku, std::string name, int price, int stock);
+
+  /* Returns the price as a string
+   * @return std::string price
+   */
+  std::string getPrice() const;
 
   /* Displays product information
    * @return void

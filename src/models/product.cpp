@@ -1,12 +1,20 @@
-#include "models/product.h"
-
+#include "product.h"
+#include "../utils/io.h"
 #include <iomanip>
-#include <iostream>
+#include <sstream>
+#include <string>
 
-Product::Product(std::string sku, std::string name, double price, int stock)
+Product::Product(std::string sku, std::string name, int price, int stock)
     : sku(sku), name(name), price(price), stock(stock) {}
 
+std::string Product::getPrice() const {
+  std::stringstream ss;
+  ss << std::fixed << std::setprecision(3) << (price / 1000.0);
+  return ss.str();
+}
+
 void Product::display() const {
-  std::cout << name << " - $" << std::fixed << std::setprecision(2) << price
-            << " (" << stock << " in stock)\n";
+  IO::print(name);
+  IO::print("price: " + getPrice());
+  IO::print("stock: " + std::to_string(stock));
 }
