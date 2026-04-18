@@ -9,6 +9,8 @@ add_executable(pos-system
     src/main.cpp 
     src/utils/menu.cpp
     src/utils/io.cpp
+    src/utils/data.cpp
+    src/models/product.cpp
 )
 
 # Tell CMake to look inside the 'src' folder for header files
