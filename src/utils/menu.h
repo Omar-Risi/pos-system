@@ -35,9 +35,10 @@ public:
   Menu(std::string _title) : title(_title) {}
 
   /*  Appends a new option to the list of options
-   *  @param option option details
+   *  @param _title title of the option
+   *  @param _callback lambda function to run when selected
    */
-  void addOption(Option option);
+  void addOption(std::string _title, std::function<void()> _callback);
 
   // Displays the list of options + one extra back option
   void display();

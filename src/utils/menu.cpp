@@ -10,7 +10,9 @@ void Option::execute() { callback(); }
 
 std::string Option::getTitle() { return title; }
 
-void Menu::addOption(Option option) { options.push_back(option); }
+void Menu::addOption(std::string _title, std::function<void()> _callback) {
+  options.push_back(Option(_title, _callback));
+}
 
 void Menu::display() {
 
