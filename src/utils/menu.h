@@ -1,6 +1,7 @@
 #pragma once
 #include <functional>
 #include <string>
+#include <vector>
 
 class Option {
   std::string title;
