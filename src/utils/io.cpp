@@ -3,7 +3,7 @@
 #include <limits>
 #include <string>
 
-std::string IO::getString(std::string msg = "") {
+std::string IO::getString(std::string msg) {
   std::string result;
   if (msg == "")
     std::cout << "> ";
@@ -14,7 +14,7 @@ std::string IO::getString(std::string msg = "") {
   return result;
 }
 
-int IO::getInt(std::string msg = "") {
+int IO::getInt(std::string msg) {
   int value;
   if (msg == "")
     std::cout << "> ";
@@ -30,7 +30,7 @@ int IO::getInt(std::string msg = "") {
   return value;
 }
 
-float IO::getFloat(std::string msg = "") {
+float IO::getFloat(std::string msg) {
   float value;
   if (msg == "")
     std::cout << "> ";
@@ -46,7 +46,7 @@ float IO::getFloat(std::string msg = "") {
   return value;
 }
 
-double IO::getDouble(std::string msg = "") {
+double IO::getDouble(std::string msg) {
   double value;
   if (msg == "")
     std::cout << "> ";
