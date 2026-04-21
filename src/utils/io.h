@@ -4,6 +4,7 @@
 
 class IO {
 
+  // TODO: add inline
 public:
   /* Gets string input from user
    * @return std::string value  the input of the user
