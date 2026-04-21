@@ -13,15 +13,16 @@ of the app can stay focused on business logic.
 
 All methods are `static`, so you call them directly on `IO`.
 
-- `std::string IO::getString()`
-- `int IO::getInt()`
-- `float IO::getFloat()`
-- `double IO::getDouble()`
+- `std::string IO::getString(std::string msg)`
+- `int IO::getInt(std::string msg)`
+- `float IO::getFloat(std::string msg)`
+- `double IO::getDouble(std::string msg)`
 - `void IO::print(std::string msg)`
 
 ## Behavior Notes
 
-- Each input method prints a `> ` prompt before reading.
+- Each input method accepts a prompt message via the `msg` parameter.
+- Per the header comments, if no message is provided, the prompt falls back to `>`.
 - `getInt()`, `getFloat()`, and `getDouble()` return `-1` if parsing fails.
 - On invalid numeric input, the method clears the stream error state and discards the
   invalid line, so the next read can continue safely.
@@ -36,18 +37,15 @@ All methods are `static`, so you call them directly on `IO`.
 void addProductFlow() {
   IO::print("Add Product");
 
-  IO::print("Enter product name:");
-  std::string name = IO::getString();
+  std::string name = IO::getString("Enter product name:");
 
-  IO::print("Enter price:");
-  double price = IO::getDouble();
+  double price = IO::getDouble("Enter price:");
   if (price == -1) {
     IO::print("Invalid price.");
     return;
   }
 
-  IO::print("Enter quantity:");
-  int quantity = IO::getInt();
+  int quantity = IO::getInt("Enter quantity:");
   if (quantity == -1) {
     IO::print("Invalid quantity.");
     return;

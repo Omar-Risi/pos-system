@@ -3,17 +3,23 @@
 #include <limits>
 #include <string>
 
-std::string IO::getString() {
+std::string IO::getString(std::string msg = "") {
   std::string result;
-  std::cout << "> ";
+  if (msg == "")
+    std::cout << "> ";
+  else
+    std::cout << msg << ": ";
   std::cin >> result;
 
   return result;
 }
 
-int IO::getInt() {
+int IO::getInt(std::string msg = "") {
   int value;
-  std::cout << "> ";
+  if (msg == "")
+    std::cout << "> ";
+  else
+    std::cout << msg << ": ";
   if (!(std::cin >> value)) {
     std::cout << "Error: Input is not an integer." << std::endl;
     std::cin.clear();
@@ -24,9 +30,12 @@ int IO::getInt() {
   return value;
 }
 
-float IO::getFloat() {
+float IO::getFloat(std::string msg = "") {
   float value;
-  std::cout << "> ";
+  if (msg == "")
+    std::cout << "> ";
+  else
+    std::cout << msg << ": ";
   if (!(std::cin >> value)) {
     std::cout << "Error: Input is not a float." << std::endl;
     std::cin.clear();
@@ -37,9 +46,12 @@ float IO::getFloat() {
   return value;
 }
 
-double IO::getDouble() {
+double IO::getDouble(std::string msg = "") {
   double value;
-  std::cout << "> ";
+  if (msg == "")
+    std::cout << "> ";
+  else
+    std::cout << msg << ": ";
   if (!(std::cin >> value)) {
     std::cout << "Error: Input is not a double." << std::endl;
     std::cin.clear();
