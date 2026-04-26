@@ -28,4 +28,7 @@ public:
    * @return void
    */
   void display() const override;
+
+  // Stores the product to db
+  void store();
 };
