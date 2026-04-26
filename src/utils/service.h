@@ -14,4 +14,6 @@ public:
    *  @return db_ptr database pointer
    */
   static Database *getDatabase();
+
+  ~Service() { delete db_ptr; }
 };
