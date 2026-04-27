@@ -25,7 +25,8 @@ void Product::store() {
   if (db != nullptr) {
     db->add(sku, this);
     IO::print("Stored successfuly!");
-  }
+  } else
+    IO::print("Error: no databaase instance");
 }
 
 void Product::restock(int quantity) {}
