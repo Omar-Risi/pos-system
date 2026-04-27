@@ -29,6 +29,11 @@ void Product::store() {
     IO::print("Error: no databaase instance");
 }
 
-void Product::restock(int quantity) {}
+void Product::restock(int quantity) { stock += quantity; }
 
-void Product::withdraw(int quantity) {}
+void Product::withdraw(int quantity) {
+  if (stock - quantity == 0)
+    stock = 0;
+  else
+    stock -= quantity;
+}
