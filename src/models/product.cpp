@@ -1,5 +1,6 @@
 #include "product.h"
 #include "../utils/io.h"
+#include "../utils/service.h"
 #include <iomanip>
 #include <sstream>
 #include <string>
@@ -17,4 +18,22 @@ void Product::display() const {
   IO::print(name);
   IO::print("price: " + getPrice());
   IO::print("stock: " + std::to_string(stock));
+}
+
+void Product::store() {
+  Database *db = Service::getDatabase();
+  if (db != nullptr) {
+    db->add(sku, this);
+    IO::print("Stored successfuly!");
+  } else
+    IO::print("Error: no databaase instance");
+}
+
+void Product::restock(int quantity) { stock += quantity; }
+
+void Product::withdraw(int quantity) {
+  if (stock - quantity == 0)
+    stock = 0;
+  else
+    stock -= quantity;
 }

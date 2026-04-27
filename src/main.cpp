@@ -1,13 +1,11 @@
-#include "utils/io.h"
-#include "utils/menu.h"
-#include <iostream>
+#include "utils/data.h"
+#include "utils/service.h"
 
 using namespace std;
 int main() {
 
-  Menu welcomeMenu = Menu("Welcome Menu");
-  welcomeMenu.addOption("option 1", []() { IO::print("Option 1"); });
-  welcomeMenu.open();
+  Database db;
+  Service::registerDatabase(&db);
 
   return 0;
 }
