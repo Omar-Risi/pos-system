@@ -31,4 +31,14 @@ public:
 
   // Stores the product to db
   void store();
+
+  /*  Adds to current stock
+   *  @param  quantity how much stock increases
+   */
+  void restock(int quantity);
+
+  /*  takes from current stock
+   *  @param  quantity how much stock decrease
+   */
+  void withdraw(int quantity);
 };

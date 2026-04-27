@@ -27,3 +27,7 @@ void Product::store() {
     IO::print("Stored successfuly!");
   }
 }
+
+void Product::restock(int quantity) {}
+
+void Product::withdraw(int quantity) {}
