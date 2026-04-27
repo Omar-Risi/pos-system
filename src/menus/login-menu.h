@@ -1,6 +1,7 @@
 class LoginMenu {
 
     public:
-    LoginMenu();
+
+    bool show();
 
 };
