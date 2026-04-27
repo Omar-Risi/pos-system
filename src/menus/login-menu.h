@@ -1,0 +1,6 @@
+class LoginMenu {
+
+    public:
+    LoginMenu();
+
+};
