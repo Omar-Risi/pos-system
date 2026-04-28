@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string>
 
+// TODO: UPDATE TO MATCH NEW DB
+
 Product::Product(std::string sku, std::string name, int price, int stock)
     : sku(sku), name(name), price(price), stock(stock) {}
 
