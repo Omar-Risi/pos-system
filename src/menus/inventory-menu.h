@@ -3,5 +3,6 @@
 #include "utils/io.h"
 class InventoryMenu : public Menu {
 public:
-InventoryMenu();
+// Constructor for Inventory Menu
+InventoryMenu(); 
 };
