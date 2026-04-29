@@ -1,13 +1,12 @@
 #include "login-menu.h"
 #include "../utils/io.h"
+#include <string>
+
 
 bool LoginMenu::show() {
-    IO::print("Enter username: ");
 
-    std::string userName = IO::getString();
+    std::string userName = IO::getString("Enter username: ");
 
-    IO::print("Enter password: ");
-
-    std::string password = IO::getString();
+    std::string password = IO::getString("Enter password: ");
 
 };
