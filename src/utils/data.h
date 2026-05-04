@@ -4,34 +4,62 @@
 #include <unordered_map>
 
 // Base class for all storable types
-class Data {
+class Record {
 public:
-  /* Displays this data item
+  /* Displays this record item
    * @return void
    */
-  virtual void display() const = 0; // pure virtual - every subclass must implement
+  virtual void
+  display() const = 0; // pure virtual - every subclass must implement
 
   /* Virtual destructor for polymorphic cleanup
    * @return void
    */
-  virtual ~Data() = default;
+  virtual ~Record() = default;
+};
+
+class Table {
+  std::unordered_map<std::string, Record *> records;
+
+public:
+  /* Adds a record to the table
+   * @param key the lookup key
+   * @param record pointer to stored record
+   */
+  void add(const std::string &key, Record *data);
+
+  /* Gets a record from the table
+   * @param key the lookup key
+   * @return Record* value the stored pointer, nultableslptr if not found
+   */
+  Record *get(const std::string &key) const;
+
+  /* Removes a record from the table
+   * @param key the lookup key
+   */
+  void remove(const std::string &key);
+
+  /* Cleans up all owned data pointers
+   * @return void
+   */
+  ~Table();
 };
 
 class Database {
-  std::unordered_map<std::string, Data *> store;
+  std::unordered_map<std::string, Table *> tables;
 
 public:
-  /* Adds a data item to the database
+  /* Adds a table to the database
    * @param key the lookup key
    * @param data pointer to stored data
    */
-  void add(const std::string &key, Data *data);
+  void add(const std::string &key, Table *data);
 
-  /* Gets a data item from the database
+  /* Gets a table from the database
    * @param key the lookup key
-   * @return Data* value the stored pointer, nullptr if not found
+   * @return Table* value the stored pointer, nultableslptr if not found
    */
-  Data *get(const std::string &key) const;
+  Table *get(const std::string &key) const;
 
   /* Removes a data item from the database
    * @param key the lookup key
