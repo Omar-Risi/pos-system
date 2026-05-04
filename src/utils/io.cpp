@@ -63,3 +63,6 @@ double IO::getDouble(std::string msg) {
 }
 
 void IO::print(std::string msg) { std::cout << msg << std::endl; }
+void IO::print(int msg){ std::cout << msg << std::endl; }
+void IO::print(double msg){ std::cout << msg << std::endl; }
+void IO::print(bool msg){ std::cout << msg << std::endl; }
