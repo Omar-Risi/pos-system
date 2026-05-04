@@ -26,3 +26,30 @@ Database::~Database() {
     delete pair.second;
   }
 }
+
+void Table::add(const std::string &key, Record *record) {
+  records[key] = record;
+}
+
+Record *Table::get(const std::string &key) const {
+  auto it = records.find(key);
+  if (it == records.end()) {
+    return nullptr;
+  }
+
+  return it->second;
+}
+
+void Table::remove(const std::string &key) {
+  auto it = records.find(key);
+  if (it != records.end()) {
+    delete it->second;
+    records.erase(it);
+  }
+}
+
+Table::~Table() {
+  for (auto &pair : records) {
+    delete pair.second;
+  }
+}
