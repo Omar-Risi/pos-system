@@ -7,5 +7,7 @@ int main() {
   Database db;
   Service::registerDatabase(&db);
 
+  db.add("products", new Table());
+
   return 0;
 }

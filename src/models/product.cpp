@@ -5,8 +5,6 @@
 #include <sstream>
 #include <string>
 
-// TODO: UPDATE TO MATCH NEW DB
-
 Product::Product(std::string sku, std::string name, int price, int stock)
     : sku(sku), name(name), price(price), stock(stock) {}
 
@@ -25,7 +23,7 @@ void Product::display() const {
 void Product::store() {
   Database *db = Service::getDatabase();
   if (db != nullptr) {
-    db->add(sku, this);
+    db->get("products")->add(sku, this);
     IO::print("Stored successfuly!");
   } else
     IO::print("Error: no databaase instance");

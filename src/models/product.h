@@ -4,8 +4,7 @@
 
 #include "../utils/data.h"
 
-// TODO: UPDATE TO MATCH NEW DB
-class Product : public Data {
+class Product : public Record{
 public:
   std::string sku;
   std::string name;
