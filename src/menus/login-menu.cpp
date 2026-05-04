@@ -3,10 +3,18 @@
 #include <string>
 
 
-bool LoginMenu::show() {
+bool LoginMenu::show(string user, string pass) {
 
-    std::string userName = IO::getString("Enter username: ");
+    for (int i = 3; i > 0; i-- ) {
 
-    std::string password = IO::getString("Enter password: ");
+        std::string userName = IO::getString("Enter username: ");
+
+        std::string password = IO::getString("Enter password: ");
+
+        if (userName == user && password == pass) { return true; } else { continue; }
+
+    }
+
+    return false;
 
 };
