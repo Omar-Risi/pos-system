@@ -1,10 +1,9 @@
 #pragma once
 
-class StatisticsMenu {
+#include "../utils/menu.h"
+
+class StatisticsMenu : public Menu {
 public:
-    /**
-     * Opens the statistics menu.
-     * Displays available statistics options for the user.
-     */
-    static void open();
+    /* Creates statistics menu */
+    StatisticsMenu();
 };
