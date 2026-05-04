@@ -20,6 +20,7 @@ public:
 
 class Table {
   std::unordered_map<std::string, Record *> records;
+  // TODO: add columns attribute
 
 public:
   /* Adds a record to the table

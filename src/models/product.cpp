@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string>
 
+// TODO: call set columns of table
+
 Product::Product(std::string sku, std::string name, int price, int stock)
     : sku(sku), name(name), price(price), stock(stock) {}
 

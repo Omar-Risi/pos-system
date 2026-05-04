@@ -3,6 +3,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+ * TODO: Add convert string vector to file columns
+ * TODO: Add Read/Parse file
+ * TODO: Add Check has columns method
+ */
+
 class Csv {
 private:
 public:
