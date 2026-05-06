@@ -9,28 +9,31 @@ public:
    * @param message input message, if not provided uses ">"
    * @return std::string value  the input of the user
    */
-  static std::string getString(std::string msg);
+  static std::string getString(std::string msg = "");
 
   /* Gets integer input from user
    * @param message input message, if not provided uses ">"
    * @return int value  the input of the user, -1 if invalid
    */
-  static int getInt(std::string msg);
+  static int getInt(std::string msg = "");
 
   /* Gets float input from user
    * @param message input message, if not provided uses ">"
    * @return float value  the input of the user, -1 if invalid
    */
-  static float getFloat(std::string msg);
+  static float getFloat(std::string msg = "");
 
   /* Gets double input from user
    * @param message input message, if not provided uses ">"
    * @return double value  the input of the user, -1 if invalid
    */
-  static double getDouble(std::string msg);
+  static double getDouble(std::string msg = "");
 
   /* Prints data to the user
    * @param msg the message of the user
    */
   static void print(std::string msg);
+  static void print(int msg);
+  static void print(double msg);
+  static void print(bool msg)
 };

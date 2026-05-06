@@ -1,10 +1,12 @@
 #include "data.h"
 
-void Database::add(const std::string &key, Data *data) { store[key] = data; }
+void Database::add(const std::string &key, Table *table) {
+  tables[key] = table;
+}
 
-Data *Database::get(const std::string &key) const {
-  auto it = store.find(key);
-  if (it == store.end()) {
+Table *Database::get(const std::string &key) const {
+  auto it = tables.find(key);
+  if (it == tables.end()) {
     return nullptr;
   }
 
@@ -12,15 +14,42 @@ Data *Database::get(const std::string &key) const {
 }
 
 void Database::remove(const std::string &key) {
-  auto it = store.find(key);
-  if (it != store.end()) {
+  auto it = tables.find(key);
+  if (it != tables.end()) {
     delete it->second;
-    store.erase(it);
+    tables.erase(it);
   }
 }
 
 Database::~Database() {
-  for (auto &pair : store) {
+  for (auto &pair : tables) {
+    delete pair.second;
+  }
+}
+
+void Table::add(const std::string &key, Record *record) {
+  records[key] = record;
+}
+
+Record *Table::get(const std::string &key) const {
+  auto it = records.find(key);
+  if (it == records.end()) {
+    return nullptr;
+  }
+
+  return it->second;
+}
+
+void Table::remove(const std::string &key) {
+  auto it = records.find(key);
+  if (it != records.end()) {
+    delete it->second;
+    records.erase(it);
+  }
+}
+
+Table::~Table() {
+  for (auto &pair : records) {
     delete pair.second;
   }
 }
