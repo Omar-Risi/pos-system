@@ -9,6 +9,7 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 CTestTestfile.cmake
+cmake-build-debug
 
 # --- Compiled Object Files ---
 *.o
