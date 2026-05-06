@@ -13,6 +13,6 @@ WelcomeMenu::WelcomeMenu() : Menu("Welcome to the POS System!") {
     inventoryMenu.open();
   });
   addOption("Open statistics menu", []() {
-    IO::print("Statistics menu is not implemented yet.");
+    IO::print("Coming soon...");
   });
 }
