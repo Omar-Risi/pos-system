@@ -1,6 +1,7 @@
 #include "welcome-menu.h"
 #include "inventory-menu.h"
 #include "pos-menu.h"
+#include "statistics-menu.h"
 #include "../utils/io.h"
 
 WelcomeMenu::WelcomeMenu() : Menu("Welcome to the POS System!") {
@@ -13,6 +14,7 @@ WelcomeMenu::WelcomeMenu() : Menu("Welcome to the POS System!") {
     inventoryMenu.open();
   });
   addOption("Open statistics menu", []() {
-    IO::print("Coming soon...");
+    StatisticsMenu statisticsMenu;
+    statisticsMenu.open();
   });
 }
