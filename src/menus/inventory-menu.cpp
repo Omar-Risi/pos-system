@@ -1,5 +1,5 @@
 #include "menus/inventory-menu.h"
-
+// Must add actual interactions to each option, and link it to the database.
 InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
     addOption("List Products", [](){
         IO::print("Name: Coffee | SKU: 1234 | Quantity: 10");
