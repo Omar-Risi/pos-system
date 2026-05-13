@@ -8,7 +8,7 @@ class Statistics : public Record {
     const std::string title;
     int numberOfSales; 
 
-    Statistics(std::string title, int numberOfSales);
+    Statistics(std::string const title, int numberOfSales);
     ~Statistics();
 
     void display() const override;
