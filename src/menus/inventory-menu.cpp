@@ -1,16 +1,23 @@
 #include "menus/inventory-menu.h"
+#include "utils/service.h"
+#include "utils/data.h"
+#include "models/product.h"
 // Must add actual interactions to each option, and link it to the database.
 InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
+    Table* products_table = Service::getDatabase()->get("products");
     addOption("List Products", [](){
         IO::print("Name: Coffee | SKU: 1234 | Quantity: 10");
         IO::print("Name: Bagel | SKU: 5678 | Quantity: 5");
         IO::print("Name: Croissant | SKU: 9012 | Quantity: 8");
     });
-    addOption("Add Product", [](){
-        IO::getString("Enter Product Name: ");
-        IO::getInt("Enter SKU: ");
-        IO::getInt("Enter Quantity: ");
-        IO::getInt("Enter Price: ");
+    addOption("Add Product", [&products_table](){
+        
+        std::string name = IO::getString("Enter Product Name: ");
+        std::string sku = IO::getInt("Enter SKU: ");
+        int stock = IO::getInt("Enter Quantity: ");
+        int price = IO::getInt("Enter Price: ");
+        Record* product = new Product(sku, name, price, stock); 
+        products_table->add(sku, product);
     });
     addOption("Update Product", [](){
         IO::getInt("Enter SKU to update: ");
