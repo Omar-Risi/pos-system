@@ -1,4 +1,5 @@
 #include "data.h"
+#include <vector>
 
 void Database::add(const std::string &key, Table *table) {
   tables[key] = table;
@@ -38,6 +39,17 @@ Record *Table::get(const std::string &key) const {
   }
 
   return it->second;
+}
+
+std::vector<Record *> Table::getAll(int max) const {
+  std::vector<Record *> result;
+  for (const auto &pair : records) {
+    if (max != -1 && result.size() >= static_cast<size_t>(max)) {
+      break;
+    }
+    result.push_back(pair.second);
+  }
+  return result;
 }
 
 void Table::remove(const std::string &key) {
