@@ -5,10 +5,11 @@
 // Must add actual interactions to each option, and link it to the database.
 InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
     Table* products_table = Service::getDatabase()->get("products");
-    addOption("List Products", [](){
-        IO::print("Name: Coffee | SKU: 1234 | Quantity: 10");
-        IO::print("Name: Bagel | SKU: 5678 | Quantity: 5");
-        IO::print("Name: Croissant | SKU: 9012 | Quantity: 8");
+    addOption("List Products", [products_table](){
+        Record* record = products_table->get("");
+        if (record != nullptr) {
+            record->display();
+        }
     });
     addOption("Add Product", [&products_table](){
         
@@ -34,3 +35,4 @@ InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
         confirmMenu.open();
 });
 }
+
