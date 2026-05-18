@@ -20,17 +20,19 @@ InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
         Record* product = new Product(sku, name, price, stock); 
         products_table->add(sku, product);
     });
-    addOption("Update Product", [](){
+    addOption("Update Product", [&products_table](){
         IO::getInt("Enter SKU to update: ");
+        Record* p = products_table->get(sku);
+        Product* product = (Product*)p;
         Menu updateMenu("\nWhat do you want to update?");
-        updateMenu.addOption("Name", [](){IO::getString("Enter new name: ");});
-        updateMenu.addOption("Quantity", [](){IO::getInt("Enter new quantity: ");});
-        updateMenu.addOption("Price", [](){IO::getString("Enter new price:");});
+        updateMenu.addOption("Name", [product](){product->name = IO::getString("Enter new name: ");});
+        updateMenu.addOption("Quantity", [product](){product->stock = IO::getInt("Enter new quantity: ");});
+        updateMenu.addOption("Price", [product](){product->price = IO::getInt("Enter new price:");});
         updateMenu.open();
     });
-    addOption("Delete Product", [](){IO::getInt("Enter SKU to delete: ");
+    addOption("Delete Product", [&products_table](){std::string sku = IO::getInt("Enter SKU to delete: ");
         Menu confirmMenu("\n Are you sure you want to delete: \n");
-        confirmMenu.addOption("Yes", [](){IO::print("Product deleted successfully.");});
+        confirmMenu.addOption("Yes", [products_table, sku](){products_table->remove(sku) IO::print("Product deleted successfully.");});
         confirmMenu.addOption("No", [](){IO::print("Cancelled product deletion");});
         confirmMenu.open();
 });
