@@ -6,7 +6,7 @@
 InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
     Table* products_table = Service::getDatabase()->get("products");
     addOption("List Products", [products_table](){
-        Record* record = products_table->get("");
+        Record* record = products_table->getAll();
         if (record != nullptr) {
             record->display();
         }
