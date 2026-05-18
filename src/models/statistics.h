@@ -6,7 +6,7 @@ class Statistics : public Record {
     public:
 
     const std::string title;
-    int numberOfSales; 
+    int value; 
 
     Statistics(std::string const title, int numberOfSales);
     ~Statistics();

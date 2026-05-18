@@ -3,7 +3,7 @@
 #include "../utils/data.h"
 #include "../utils/io.h" 
 
-Statistics::Statistics(std::string const title, int numberOfSales) : title(title), numberOfSales(numberOfSales) {}
+Statistics::Statistics(std::string const title, int numberOfSales) : title(title), value(numberOfSales) {}
 
 Statistics::~Statistics() {
 }
@@ -11,6 +11,6 @@ Statistics::~Statistics() {
 void Statistics::display() const {
 
     IO::print(title);
-    IO::print(numberOfSales);
+    IO::print(value);
 
 }
