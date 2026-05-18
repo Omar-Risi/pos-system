@@ -3,7 +3,7 @@
 #include <string>
 
 
-bool LoginMenu::show(string user, string pass) {
+bool LoginMenu::show(std::string user, std::string pass) {
 
     for (int i = 3; i > 0; i-- ) {
 
