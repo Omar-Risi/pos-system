@@ -2,7 +2,7 @@
 #include "utils/service.h"
 #include "utils/data.h"
 #include "models/product.h"
-// Must add actual interactions to each option, and link it to the database.
+
 InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
     Table* products_table = Service::getDatabase()->get("products");
     addOption("List Products", [products_table](){
