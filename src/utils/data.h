@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <unordered_map>
 
 // Base class for all storable types
@@ -20,6 +21,7 @@ public:
 
 class Table {
   std::unordered_map<std::string, Record *> records;
+  // TODO: add columns attribute
 
 public:
   /* Adds a record to the table
@@ -33,6 +35,12 @@ public:
    * @return Record* value the stored pointer, nultableslptr if not found
    */
   Record *get(const std::string &key) const;
+
+  /* Gets all records from the table
+   * @param max the maximum number of records to return, -1 for all
+   * @return vector<Record*> a vector of pointers to the stored records
+   */
+  std::vector<Record *> getAll(int max = -1) const;
 
   /* Removes a record from the table
    * @param key the lookup key

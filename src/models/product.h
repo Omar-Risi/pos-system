@@ -4,7 +4,7 @@
 
 #include "../utils/data.h"
 
-class Product : public Record{
+class Product : public Record {
 public:
   std::string sku;
   std::string name;
