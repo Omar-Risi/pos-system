@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <vector>
 
 // TODO: call set columns of table
 
@@ -20,6 +21,10 @@ void Product::display() const {
   IO::print(name);
   IO::print("price: " + getPrice());
   IO::print("stock: " + std::to_string(stock));
+}
+
+std::vector<std::string> Product::toCsvRow() const {
+  return {sku, name, std::to_string(price), std::to_string(stock)};
 }
 
 void Product::store() {
