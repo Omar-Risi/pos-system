@@ -29,6 +29,11 @@ public:
    */
   void display() const override;
 
+  /* Converts the product into a CSV row
+   * @return vector<string> row data in CSV column order
+   */
+  std::vector<std::string> toCsvRow() const override;
+
   // Stores the product to db
   void store();
 

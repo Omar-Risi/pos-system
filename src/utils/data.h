@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -13,6 +14,11 @@ public:
   virtual void
   display() const = 0; // pure virtual - every subclass must implement
 
+  /* Converts the record into a CSV row
+   * @return vector<string> the row values in column order
+   */
+  virtual std::vector<std::string> toCsvRow() const = 0;
+
   /* Virtual destructor for polymorphic cleanup
    * @return void
    */
@@ -21,7 +27,8 @@ public:
 
 class Table {
   std::unordered_map<std::string, Record *> records;
-  // TODO: add columns attribute
+  std::vector<std::string> columns;
+  std::function<Record *(const std::unordered_map<std::string, std::string> &)> rowFactory;
 
 public:
   /* Adds a record to the table
@@ -29,6 +36,31 @@ public:
    * @param record pointer to stored record
    */
   void add(const std::string &key, Record *data);
+
+  /* Sets the table columns used for CSV import/export
+   * @param value column names in CSV order
+   */
+  void setColumns(const std::vector<std::string> &value);
+
+  /* Returns the table columns used for CSV import/export
+   * @return vector<string> the CSV column names
+   */
+  const std::vector<std::string> &getColumns() const;
+
+  /* Sets the factory used to build records from CSV rows
+   * @param factory row factory callback
+   */
+  void setRowFactory(std::function<Record *(const std::unordered_map<std::string, std::string> &)> factory);
+
+  /* Creates a record from a CSV row using the configured factory
+   * @param row parsed CSV values keyed by column name
+   * @return Record* the created record, or nullptr if no factory is set
+   */
+  Record *createRecordFromRow(const std::unordered_map<std::string, std::string> &row) const;
+
+  /* Removes all records from the table
+   */
+  void clear();
 
   /* Gets a record from the table
    * @param key the lookup key

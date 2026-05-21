@@ -3,10 +3,17 @@
 #include <vector>
 #include "../models/product.h"
 
+class Table;
+
 class PosMenu : public Menu {
-    // calculates the total price of the items in the cart
-    int calculateTotal(std::vector<Product*>& cart) ;
-    public:
+    Table *products_table = nullptr;
+    Table *stats_table = nullptr;
+    std::vector<Product *> cart;
+
+    // Calculates the total price of the items in the cart
+    int calculateTotal(const std::vector<Product *> &cart) const;
+
+public:
     // Constructs the POS Menu
     PosMenu();
 };

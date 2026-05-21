@@ -9,7 +9,7 @@ std::string IO::getString(std::string msg) {
     std::cout << "> ";
   else
     std::cout << msg << ": ";
-  std::cin >> result;
+  std::getline(std::cin >> std::ws, result);
 
   return result;
 }
@@ -63,6 +63,7 @@ double IO::getDouble(std::string msg) {
 }
 
 void IO::print(std::string msg) { std::cout << msg << std::endl; }
+void IO::print(const char* msg) { std::cout << msg << std::endl; }
 void IO::print(int msg){ std::cout << msg << std::endl; }
 void IO::print(double msg){ std::cout << msg << std::endl; }
-void IO::print(bool msg){ std::cout << msg << std::endl; }
+void IO::print(bool msg){ std::cout << msg << (msg ? "true" : "false") << std::endl; }
