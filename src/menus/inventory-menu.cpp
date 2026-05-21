@@ -1,29 +1,40 @@
 #include "menus/inventory-menu.h"
+#include "utils/service.h"
+#include "utils/data.h"
+#include "models/product.h"
 
 InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
-    addOption("List Products", [](){
-        IO::print("Name: Coffee | SKU: 1234 | Quantity: 10");
-        IO::print("Name: Bagel | SKU: 5678 | Quantity: 5");
-        IO::print("Name: Croissant | SKU: 9012 | Quantity: 8");
+    Table* products_table = Service::getDatabase()->get("products");
+    addOption("List Products", [products_table](){
+        Record* record = products_table->getAll();
+        if (record != nullptr) {
+            record->display();
+        }
     });
-    addOption("Add Product", [](){
-        IO::getString("Enter Product Name: ");
-        IO::getInt("Enter SKU: ");
-        IO::getInt("Enter Quantity: ");
-        IO::getInt("Enter Price: ");
+    addOption("Add Product", [&products_table](){
+        
+        std::string name = IO::getString("Enter Product Name: ");
+        std::string sku = IO::getString("Enter SKU: ");
+        int stock = IO::getInt("Enter Quantity: ");
+        int price = IO::getInt("Enter Price: ");
+        Record* product = new Product(sku, name, price, stock); 
+        products_table->add(sku, product);
     });
-    addOption("Update Product", [](){
-        IO::getInt("Enter SKU to update: ");
+    addOption("Update Product", [&products_table](){
+        std::string sku = IO::getString("Enter SKU to update: ");
+        Record* p = products_table->get(sku);
+        Product* product = (Product*)p;
         Menu updateMenu("\nWhat do you want to update?");
-        updateMenu.addOption("Name", [](){IO::getString("Enter new name: ");});
-        updateMenu.addOption("Quantity", [](){IO::getInt("Enter new quantity: ");});
-        updateMenu.addOption("Price", [](){IO::getString("Enter new price:");});
+        updateMenu.addOption("Name", [product](){product->name = IO::getString("Enter new name: ");});
+        updateMenu.addOption("Quantity", [product](){product->stock = IO::getInt("Enter new quantity: ");});
+        updateMenu.addOption("Price", [product](){product->price = IO::getInt("Enter new price:");});
         updateMenu.open();
     });
-    addOption("Delete Product", [](){IO::getInt("Enter SKU to delete: ");
+    addOption("Delete Product", [&products_table](){std::string sku = IO::getString("Enter SKU to delete: ");
         Menu confirmMenu("\n Are you sure you want to delete: \n");
-        confirmMenu.addOption("Yes", [](){IO::print("Product deleted successfully.");});
+        confirmMenu.addOption("Yes", [products_table, sku](){products_table->remove(sku); IO::print("Product deleted successfully.");});
         confirmMenu.addOption("No", [](){IO::print("Cancelled product deletion");});
         confirmMenu.open();
 });
 }
+
