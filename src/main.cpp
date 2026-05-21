@@ -1,7 +1,7 @@
+#include "menus/login-menu.h"
+#include "menus/welcome-menu.h"
 #include "utils/data.h"
 #include "utils/service.h"
-#include "menus/welcome-menu.h"
-#include "menus/login-menu.h"
 
 using namespace std;
 int main() {
@@ -11,13 +11,13 @@ int main() {
 
   db.add("products", new Table());
 
-  LoginMenu loginMenu();
+  LoginMenu loginMenu;
 
-  bool isLoggedIn = loginMenu.show();
-  
+  bool isLoggedIn = loginMenu.open("admin", "admin123");
+
   if (isLoggedIn) {
-    WelcomeMenu welcomeMenu;
-    welcomeMenu.open();
+    WelcomeMenu *welcomeMenu;
+    welcomeMenu->open();
   }
   return 0;
 }
