@@ -12,6 +12,7 @@ add_executable(pos-system
     src/utils/service.cpp
     src/utils/data.cpp
     src/utils/csv.cpp
+    src/utils/storage.cpp
     src/models/product.cpp
     src/models/statistics.cpp
     src/menus/login-menu.cpp
