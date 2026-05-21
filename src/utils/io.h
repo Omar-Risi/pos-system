@@ -33,6 +33,7 @@ public:
    * @param msg the message of the user
    */
   static void print(std::string msg);
+  static void print(const char* msg);
   static void print(int msg);
   static void print(double msg);
   static void print(bool msg);

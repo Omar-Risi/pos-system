@@ -16,8 +16,8 @@ int main() {
   bool isLoggedIn = loginMenu.open("admin", "admin123");
 
   if (isLoggedIn) {
-    WelcomeMenu *welcomeMenu;
-    welcomeMenu->open();
+    WelcomeMenu welcomeMenu;
+    welcomeMenu.open();
   }
   return 0;
 }
