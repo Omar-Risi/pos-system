@@ -18,9 +18,8 @@ std::string Product::getPrice() const {
 }
 
 void Product::display() const {
-  IO::print(name);
-  IO::print("price: " + getPrice());
-  IO::print("stock: " + std::to_string(stock));
+  IO::print(sku + " | " + name + " | " + getPrice() + " | " +
+            std::to_string(stock));
 }
 
 std::vector<std::string> Product::toCsvRow() const {

@@ -9,7 +9,7 @@ std::string IO::getString(std::string msg) {
     std::cout << "> ";
   else
     std::cout << msg << ": ";
-  std::cin >> result;
+  std::getline(std::cin >> std::ws, result);
 
   return result;
 }

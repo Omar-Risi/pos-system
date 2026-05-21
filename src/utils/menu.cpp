@@ -42,3 +42,31 @@ void Menu::open() {
     options[input - 1].execute();
   }
 }
+
+int Menu::openOnce() {
+  while (true) {
+    display();
+    int input = IO::getInt();
+
+    if (input == -1 || input < 1 || input > options.size() + 1) {
+      continue;
+    }
+
+    if (input == options.size() + 1) {
+      return 0;
+    }
+
+    options[input - 1].execute();
+    return input;
+  }
+}
+
+bool Menu::confirm(const std::string &title, const std::string &yesLabel,
+                   const std::string &noLabel) {
+  Menu dialog(title);
+  dialog.addOption(yesLabel, []() {});
+  dialog.addOption(noLabel, []() {});
+
+  int selection = dialog.openOnce();
+  return selection == 1;
+}

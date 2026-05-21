@@ -45,4 +45,12 @@ public:
 
   // Creates a while loop and opens the menu
   void open();
+
+  // Opens a one-time menu (dialog style) and returns the selected index
+  int openOnce();
+
+  // Simple yes/no dialog helper
+  static bool confirm(const std::string &title,
+                      const std::string &yesLabel = "Yes",
+                      const std::string &noLabel = "No");
 };
