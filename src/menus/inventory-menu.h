@@ -8,6 +8,8 @@ class InventoryMenu : public Menu {
   Table *stats_table = nullptr;
 
 public:
-  // Constructor for Inventory Menu
+  /* Constructor for Inventory Menu
+   * @return void
+   */
   InventoryMenu();
 };

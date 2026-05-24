@@ -12,7 +12,7 @@ public:
    * @return void
    */
   virtual void
-  display() const = 0; // pure virtual - every subclass must implement
+  display() const = 0;
 
   /* Converts the record into a CSV row
    * @return vector<string> the row values in column order

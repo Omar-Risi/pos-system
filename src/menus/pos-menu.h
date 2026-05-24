@@ -10,11 +10,16 @@ class PosMenu : public Menu {
     Table *stats_table = nullptr;
     std::vector<Product *> cart;
 
-    // Calculates the total price of the items in the cart
+    /* Calculates the total price of the items in the cart
+     * @param cart vector of product pointers
+     * @return int total price
+     */
     int calculateTotal(const std::vector<Product *> &cart) const;
 
 public:
-    // Constructs the POS Menu
+    /* Constructs the POS Menu
+     * @return void
+     */
     PosMenu();
 };
 

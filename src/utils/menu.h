@@ -15,7 +15,9 @@ public:
    */
   Option(std::string _title, std::function<void()> _callback);
 
-  // Executes the callback function for the option
+  /* Executes the callback function for the option
+   * @return void
+   */
   void execute();
 
   /* Returns title of the option
@@ -40,16 +42,27 @@ public:
    */
   void addOption(std::string _title, std::function<void()> _callback);
 
-  // Displays the list of options + one extra back option
+  /* Displays the list of options + one extra back option
+   * @return void
+   */
   void display();
 
-  // Creates a while loop and opens the menu
+  /* Creates a while loop and opens the menu
+   * @return void
+   */
   void open();
 
-  // Opens a one-time menu (dialog style) and returns the selected index
+  /* Opens a one-time menu (dialog style) and returns the selected index
+   * @return int index  the selected option index
+   */
   int openOnce();
 
-  // Simple yes/no dialog helper
+  /* Simple yes/no dialog helper
+   * @param title dialog title
+   * @param yesLabel label for affirmative option
+   * @param noLabel label for negative option
+   * @return bool true if yes selected, false otherwise
+   */
   static bool confirm(const std::string &title,
                       const std::string &yesLabel = "Yes",
                       const std::string &noLabel = "No");
