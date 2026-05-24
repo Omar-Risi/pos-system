@@ -5,11 +5,13 @@
 #include "../utils/data.h"
 
 class Product : public Record {
-public:
+private:
   std::string sku;
   std::string name;
   int price;
   int stock;
+
+public:
 
   /* Creates a product model
    * @param sku product sku value
@@ -19,10 +21,27 @@ public:
    */
   Product(std::string sku, std::string name, int price, int stock);
 
+  const std::string &getSku() const;
+  void setSku(const std::string &value);
+
+  const std::string &getName() const;
+  void setName(const std::string &value);
+
+  int getPriceValue() const;
+  void setPriceValue(int value);
+
+  int getStock() const;
+  void setStock(int value);
+
   /* Returns the price as a string
    * @return std::string price
    */
   std::string getPrice() const;
+
+  int getTotalPrice() const;
+
+  friend int operator+(int total, const Product &product);
+  friend int operator+(const Product &product, int total);
 
   /* Displays product information
    * @return void
