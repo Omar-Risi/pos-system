@@ -2,6 +2,7 @@
 #include "../utils/io.h"
 #include <vector>
 #include <string>
+#include <stdexcept>
 #include "../utils/service.h"
 #include "../utils/data.h"
 #include "../models/product.h"
@@ -11,7 +12,7 @@
 int PosMenu::calculateTotal(const std::vector<Product *> &cart) const {
     int total = 0;
     for (const auto &item : cart) {
-        total += item->price * item->stock; // stock is used as quantity in cart
+        total = total + *item; // stock is used as quantity in cart
     }
     return total;
 }
@@ -41,13 +42,13 @@ PosMenu::PosMenu() : Menu("POS Menu") {
             return;
         }
 
-        if (product->stock < quantity) {
+        if (product->getStock() < quantity) {
             IO::print("Not enough stock");
             return;
         }
 
         Product *cartItem =
-                new Product(product->sku, product->name, product->price, quantity);
+            new Product(product->getSku(), product->getName(), product->getPriceValue(), quantity);
         cart.push_back(cartItem);
     });
     addOption("Edit Cart", [this]() {
@@ -58,9 +59,9 @@ PosMenu::PosMenu() : Menu("POS Menu") {
         Menu cartMenu = Menu("Cart");
         for (const auto &item : cart) {
             cartMenu.addOption(
-                    "SKU: " + item->sku + " | " + item->name + " | $" +
-                            std::to_string(item->price) + " | Qty: " +
-                            std::to_string(item->stock),
+                    "SKU: " + item->getSku() + " | " + item->getName() + " | $" +
+                            std::to_string(item->getPriceValue()) + " | Qty: " +
+                            std::to_string(item->getStock()),
                     [item]() {
                         Menu itemMenu = Menu("Edit Item");
                         itemMenu.addOption("change quantity", [item]() {
@@ -69,9 +70,9 @@ PosMenu::PosMenu() : Menu("POS Menu") {
                                 IO::print("Invalid quantity");
                                 return;
                             }
-                            item->stock = newQuantity;
+                            item->setStock(newQuantity);
                         });
-                        itemMenu.addOption("remove from cart", [item]() { item->stock = 0; });
+                        itemMenu.addOption("remove from cart", [item]() { item->setStock(0); });
                         itemMenu.open();
                     });
         }
@@ -90,7 +91,7 @@ PosMenu::PosMenu() : Menu("POS Menu") {
         std::vector<Product *> checkoutItems;
         checkoutItems.reserve(cart.size());
         for (const auto &item : cart) {
-            if (item->stock > 0) {
+            if (item->getStock() > 0) {
                 checkoutItems.push_back(item);
             }
         }
@@ -100,17 +101,20 @@ PosMenu::PosMenu() : Menu("POS Menu") {
             return;
         }
 
-        for (const auto &item : checkoutItems) {
-            Product *product =
-                dynamic_cast<Product *>(products_table->get(item->sku));
-            if (!product) {
-                IO::print("Product not found: " + item->sku);
-                return;
+        try {
+            for (const auto &item : checkoutItems) {
+                Product *product =
+                    dynamic_cast<Product *>(products_table->get(item->getSku()));
+                if (!product) {
+                    throw std::runtime_error("Product not found: " + item->getSku());
+                }
+                if (product->getStock() < item->getStock()) {
+                    throw std::runtime_error("Not enough stock for: " + item->getSku());
+                }
             }
-            if (product->stock < item->stock) {
-                IO::print("Not enough stock for: " + item->sku);
-                return;
-            }
+        } catch (const std::exception &ex) {
+            IO::print(ex.what());
+            return;
         }
 
         int total = calculateTotal(checkoutItems);
@@ -133,9 +137,9 @@ PosMenu::PosMenu() : Menu("POS Menu") {
 
         for (const auto &item : checkoutItems) {
             Product *product =
-                dynamic_cast<Product *>(products_table->get(item->sku));
+                dynamic_cast<Product *>(products_table->get(item->getSku()));
             if (product) {
-                product->withdraw(item->stock);
+                product->withdraw(item->getStock());
             }
         }
 
@@ -143,13 +147,13 @@ PosMenu::PosMenu() : Menu("POS Menu") {
             Statistics *revenue =
                 dynamic_cast<Statistics *>(stats_table->get("gross_revenue"));
             if (revenue) {
-                revenue->value += total;
+                revenue->setValue(revenue->getValue() + total);
             }
 
             Statistics *transactions =
                 dynamic_cast<Statistics *>(stats_table->get("transactions"));
             if (transactions) {
-                transactions->value += 1;
+                transactions->setValue(transactions->getValue() + 1);
             }
         }
 

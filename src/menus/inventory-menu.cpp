@@ -44,7 +44,7 @@ InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
       Statistics *total =
           dynamic_cast<Statistics *>(stats_table->get("total_products"));
       if (total) {
-        total->value += 1;
+        total->setValue(total->getValue() + 1);
       }
     }
     Storage::saveTemp();
@@ -63,13 +63,13 @@ InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
     }
     Menu updateMenu("\nWhat do you want to update?");
     updateMenu.addOption("Name", [product]() {
-      product->name = IO::getString("Enter new name");
+      product->setName(IO::getString("Enter new name"));
     });
     updateMenu.addOption("Quantity", [product]() {
-      product->stock = IO::getInt("Enter new quantity");
+      product->setStock(IO::getInt("Enter new quantity"));
     });
     updateMenu.addOption("Price", [product]() {
-      product->price = IO::getInt("Enter new price");
+      product->setPriceValue(IO::getInt("Enter new price"));
     });
     updateMenu.open();
     Storage::saveTemp();
@@ -92,8 +92,8 @@ InventoryMenu::InventoryMenu() : Menu("Inventory Manager") {
     if (stats_table) {
       Statistics *total =
           dynamic_cast<Statistics *>(stats_table->get("total_products"));
-      if (total && total->value > 0) {
-        total->value -= 1;
+      if (total && total->getValue() > 0) {
+        total->setValue(total->getValue() - 1);
       }
     }
     IO::print("Product deleted successfully.");

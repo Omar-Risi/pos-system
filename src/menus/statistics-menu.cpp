@@ -15,7 +15,7 @@ StatisticsMenu::StatisticsMenu()
                               ? dynamic_cast<Statistics *>(
                                     stats_table->get("gross_revenue"))
                               : nullptr;
-    int value = revenue ? revenue->value : 0;
+      int value = revenue ? revenue->getValue() : 0;
     IO::print("Gross revenue: " + std::to_string(value));
   });
 
@@ -25,7 +25,7 @@ StatisticsMenu::StatisticsMenu()
                                   stats_table->get("total_products"))
                             : nullptr;
     if (total) {
-      IO::print("Total products: " + std::to_string(total->value));
+      IO::print("Total products: " + std::to_string(total->getValue()));
       return;
     }
 
@@ -41,7 +41,7 @@ StatisticsMenu::StatisticsMenu()
                                    ? dynamic_cast<Statistics *>(
                                          stats_table->get("transactions"))
                                    : nullptr;
-    int value = transactions ? transactions->value : 0;
+    int value = transactions ? transactions->getValue() : 0;
     IO::print("Number of transactions: " + std::to_string(value));
   });
 }
